@@ -1,13 +1,13 @@
 import express, { Request, Response } from "express";
 const port = process.env.PORT || 3001
-//import routes from "./routes/index"
+import routes from "./routes/index"
 import cors from "cors"
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-//app.use(routes)
+app.use(routes)
 
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({
