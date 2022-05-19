@@ -10,7 +10,7 @@ interface IUser {
 
 module.exports = {
     async execute({ full_name, username, password }: IUser) {
-        console.log(full_name);
+        
         try {
             const passwordHash = await hash(password, 8)            
             const user = await prisma.user.create({
