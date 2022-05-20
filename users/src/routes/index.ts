@@ -1,10 +1,13 @@
 import { Router } from "express"
-const CreateUserController = require("../controllers/user/CreateUserController")
-const ListAllUsersController = require("../controllers/user/ListAllUsersController")
+import CreateUserController from "../controllers/user/CreateUserController"
+import ListAllUsersController from "../controllers/user/ListAllUsersController"
+
+const createUserController = new CreateUserController()
+const listAllUsersController = new ListAllUsersController()
 
 const router = Router()
 
-router.post("/user", CreateUserController.handle)
-router.get("/users", ListAllUsersController.handle)
+router.post("/user", createUserController.handle)
+router.get("/users", listAllUsersController.handle)
 
 export default router

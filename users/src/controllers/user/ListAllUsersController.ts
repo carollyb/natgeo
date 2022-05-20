@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
 
-const listUserService = require("../../services/user/ListUserService")
-
-module.exports = {
+import ListUserService from "../../services/user/ListUserService"
+const listUserService = new ListUserService()
+export default class ListAllUsersController {
     async handle(request: Request, response: Response) {
         try {
             const allUsers = await listUserService.listAllUsers()

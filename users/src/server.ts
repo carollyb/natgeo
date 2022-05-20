@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 const port = process.env.PORT || 3001
-import routes from "./routes/index"
+import routes from "./routes"
 import cors from "cors"
 
 const app = express();
