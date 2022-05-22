@@ -1,9 +1,7 @@
 import CreateUserService from "../../services/user/CreateUserService"
 import { Request, Response } from "express"
-const createUserService = new CreateUserService()
-
 export default class CreateUserController {
-    async handle(request: Request, response: Response) {
+    static async handle(request: Request, response: Response) {
         try {
             const { full_name, username, password } = request.body
             const User = {
@@ -11,7 +9,7 @@ export default class CreateUserController {
                 username,
                 password
             }
-            const user = await createUserService.execute(User)
+            const user = await CreateUserService.execute(User)
             response.status(201).json({
                 "user_created": user
             })

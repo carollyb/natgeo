@@ -1,11 +1,10 @@
 import { Request, Response } from "express"
 
 import ListUserService from "../../services/user/ListUserService"
-const listUserService = new ListUserService()
 export default class ListAllUsersController {
-    async handle(request: Request, response: Response) {
+    static async handle(request: Request, response: Response) {
         try {
-            const allUsers = await listUserService.listAllUsers()
+            const allUsers = await ListUserService.listAllUsers()
             return response.status(200).json({
                 results: allUsers
             })

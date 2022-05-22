@@ -8,8 +8,7 @@ interface IUser {
 }
 
 export default class CreateUserService {
-    async execute({ full_name, username, password }: IUser) {
-        
+    static async execute({ full_name, username, password }: IUser) {
         try {
             const passwordHash = await hash(password, 8)            
             const user = await prisma.user.create({

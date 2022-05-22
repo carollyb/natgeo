@@ -1,11 +1,11 @@
 import prisma from "../../database/index"
 
 export default class ListUserService {
-    async listAllUsers() {
+    static async listAllUsers() {
         const allUsers = await prisma.user.findMany()
         return allUsers
     }
-    async searchUser(username: string) {
+    static async searchUser(username: string) {
         const searchUser = await prisma.user.findMany({
             where: {
                 username: username
@@ -13,7 +13,7 @@ export default class ListUserService {
         })
         return searchUser
     }
-    async searchUserById(id: string) {
+    static async searchUserById(id: string) {
         const searchUserById = await prisma.user.findUnique({
             where: {
                 id: id
