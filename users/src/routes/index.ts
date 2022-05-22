@@ -1,6 +1,6 @@
 import { Router } from "express"
-const CreateUserController = require("../controllers/user/CreateUserController")
-const ListAllUsersController = require("../controllers/user/ListAllUsersController")
+import CreateUserController from "../controllers/user/CreateUserController"
+import ListAllUsersController from "../controllers/user/ListAllUsersController"
 
 const router = Router()
 

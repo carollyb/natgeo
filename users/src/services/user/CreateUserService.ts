@@ -1,6 +1,5 @@
-const prisma = require("../../database/index");
-const { hash } = require("bcrypt")
-
+import prisma from "../../database/index";
+import { hash } from "bcrypt"
 interface IUser {
     id?: string,
     full_name: string,
@@ -8,9 +7,8 @@ interface IUser {
     password: string
 }
 
-module.exports = {
-    async execute({ full_name, username, password }: IUser) {
-        
+export default class CreateUserService {
+    static async execute({ full_name, username, password }: IUser) {
         try {
             const passwordHash = await hash(password, 8)            
             const user = await prisma.user.create({

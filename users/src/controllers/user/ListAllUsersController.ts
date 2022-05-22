@@ -1,11 +1,10 @@
 import { Request, Response } from "express"
 
-const listUserService = require("../../services/user/ListUserService")
-
-module.exports = {
-    async handle(request: Request, response: Response) {
+import ListUserService from "../../services/user/ListUserService"
+export default class ListAllUsersController {
+    static async handle(request: Request, response: Response) {
         try {
-            const allUsers = await listUserService.listAllUsers()
+            const allUsers = await ListUserService.listAllUsers()
             return response.status(200).json({
                 results: allUsers
             })

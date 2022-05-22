@@ -1,18 +1,19 @@
-module.exports = {
-    async listAllUsers() {
+import prisma from "../../database/index"
+
+export default class ListUserService {
+    static async listAllUsers() {
         const allUsers = await prisma.user.findMany()
-        console.log(allUsers);
         return allUsers
-    },
-    async searchUser(username: String) {
+    }
+    static async searchUser(username: string) {
         const searchUser = await prisma.user.findMany({
             where: {
                 username: username
             }
         })
         return searchUser
-    },
-    async searchUserById(id: String) {
+    }
+    static async searchUserById(id: string) {
         const searchUserById = await prisma.user.findUnique({
             where: {
                 id: id

@@ -1,17 +1,21 @@
-const CreateUserService = require("../../services/user/CreateUserService");
+import CreateUserService from "../../services/user/CreateUserService"
 import { Request, Response } from "express"
-
-module.exports = {
-    async handle(request: Request, response: Response) {
+export default class CreateUserController {
+    static async handle(request: Request, response: Response) {
         try {
             const { full_name, username, password } = request.body
-            const user = await CreateUserService.execute(full_name, username, password)
+            const User = {
+                full_name,
+                username,
+                password
+            }
+            const user = await CreateUserService.execute(User)
             response.status(201).json({
                 "user_created": user
             })
-        } catch (error: any) {
+        } catch (error) {
             response.status(400).json({
-                error: error.message
+                error: "erro"
             })
         }
     }
