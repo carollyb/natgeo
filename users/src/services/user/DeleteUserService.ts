@@ -1,6 +1,6 @@
 import prisma from "../../database";
 
-export default class DeleteUserServce {
+export default class DeleteUserService {
     static async execute(id: string) {
         try {
             const deleteUser = await prisma.user.delete({
