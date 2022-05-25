@@ -5,7 +5,7 @@ export default class DeleteUserService {
         try {
             const deleteUser = await prisma.user.delete({
                 where: {
-                    id
+                    id: id
                 }
             })
             return deleteUser
