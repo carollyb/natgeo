@@ -21,4 +21,15 @@ export default class ListUserService {
         })
         return searchUserById
     }
+    static async sortAllUsers(type: string) {
+        
+        const allUsers = await prisma.user.findMany({
+            orderBy: [
+                {
+                    username: type == 'asc' ? 'asc': 'desc'
+                }
+            ]
+        })
+        return allUsers
+    }
 }
