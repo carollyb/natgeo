@@ -1,4 +1,5 @@
 import { Router } from "express"
+import AuthenticationController from "../controllers/auth/AuthenticationController"
 import CreateUserController from "../controllers/user/CreateUserController"
 import DeleteUserController from "../controllers/user/DeleteUserController"
 import ListAllUsersController from "../controllers/user/ListAllUsersController"
@@ -12,5 +13,6 @@ router.get("/users", ListAllUsersController.handle)
 router.get("/users/sort", SortUsersByUsernameController.handle)
 router.put("/user/:id", UpdateUserController.handle)
 router.delete("/user/:id", DeleteUserController.handle)
+router.post("/login", AuthenticationController.handle)
 
 export default router
