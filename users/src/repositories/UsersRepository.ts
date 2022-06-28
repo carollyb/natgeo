@@ -6,4 +6,5 @@ export interface UsersRepositoryData {
 
 export interface UsersRepository {
     create: (data: UsersRepositoryData) => Promise<void>
+    delete: (id: string) => Promise<void>
 }
