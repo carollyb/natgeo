@@ -15,11 +15,13 @@ export class CreateUserUsecase {
         try {
             const { full_name, username, password } = request
     
-            await this.userRepository.create({
+            const user = await this.userRepository.create({
                 full_name,
                 username,
                 password
             })
+
+            return user
         } catch (error) {
             throw new Error(`Could not create user`)
         }
