@@ -1,5 +1,5 @@
 import prisma from "../../database/index";
-import { UsersRepositoryData, UsersRepository} from "../UsersRepository";
+import { UsersRepositoryData, UsersRepository, User, UserUpdateData} from "../UsersRepository";
 import { hash } from "bcrypt"
 
 export class PrismaUsersRepository implements UsersRepository {
@@ -22,5 +22,19 @@ export class PrismaUsersRepository implements UsersRepository {
                 id: id
             }
         })
-    };
+    }
+
+    async update({id, newFullName, newUsername, newPassword}: UserUpdateData) {
+        const newUserData = await prisma.user.update({
+            where: {
+                id
+            },
+            data: {
+                full_name: newFullName,
+                username: newUsername,
+                password: newPassword
+            }
+        });
+        return newUserData
+    }
 }
