@@ -11,7 +11,15 @@ export interface User {
     password: string,
 }
 
+export interface UserUpdateData {
+    id?: string,
+    newFullName: string,
+    newUsername: string,
+    newPassword: string
+}
+
 export interface UsersRepository {
     create: (data: UsersRepositoryData) => Promise<User>
     delete: (id: string) => Promise<void>
+    update: (data: UserUpdateData) => Promise<User>
 }
