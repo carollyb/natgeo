@@ -16,7 +16,6 @@ export default class DeleteUserController {
             return response.status(400).json(
                 error
             )
-            
         }
     }
 }
