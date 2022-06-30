@@ -24,7 +24,7 @@ export class UpdateUserUsecase {
 
             return userUpdated
         } catch (error) {
-            throw new Error(`Errouu`)
+            throw new Error(`Could not update user`)
         }
     }
 }
