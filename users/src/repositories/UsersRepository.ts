@@ -20,6 +20,7 @@ export interface UserUpdateData {
 
 export interface UsersRepository {
     create: (data: UsersRepositoryData) => Promise<User>
+    listAllUsers: () => Promise<any[]>
     delete: (id: string) => Promise<void>
     update: (data: UserUpdateData) => Promise<User>
 }
