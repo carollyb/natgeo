@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
 import { SortIssuesByDateUsecase } from "../usecases/SortIssuesByDateUsecase";
 
+interface Query {
+    type: string
+}
 export default class SortIssuesByDateController {
     static async handle(request: Request, response: Response) {
         
@@ -11,7 +14,7 @@ export default class SortIssuesByDateController {
             )
             
         try {
-            const { type } = request.query
+            const { type } = request.query as unknown as Query
             const issuesByDate = await sortIssuesByDateUsecase.execute(type)
             return response.status(200).json(issuesByDate)
         } catch (error) {
