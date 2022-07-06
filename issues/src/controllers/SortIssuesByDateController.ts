@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
-import SortIssuesByDateUsecase from "../usecases/SortIssuesByDateUsecase";
+import { SortIssuesByDateUsecase } from "../usecases/SortIssuesByDateUsecase";
 
 export default class SortIssuesByDateController {
     static async handle(request: Request, response: Response) {

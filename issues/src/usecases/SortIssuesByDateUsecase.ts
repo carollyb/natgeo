@@ -1,13 +1,17 @@
 import { IssuesRepository } from "../repositories/IssuesRepository";
 
-export default class SortIssuesByDateUsecase {
+export class SortIssuesByDateUsecase {
     constructor(
         private issuesRepository: IssuesRepository
     ) {}
 
     async execute(request: string) {
-        const type = request
-        const issuesByDate = await this.issuesRepository.sortIssuesByDate(type)
-        return issuesByDate
+        try {
+            const type = request
+            const issuesByDate = await this.issuesRepository.sortIssuesByDate(type)
+            return issuesByDate
+        } catch (error) {
+            throw new Error(`Could not sort issues`)
+        }
     }
 }
