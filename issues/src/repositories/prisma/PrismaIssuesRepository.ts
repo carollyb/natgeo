@@ -1,7 +1,7 @@
 import prisma from "../../database/index"
 import { IssuesRepository, Issue, IssuesRepositoryData } from "../IssuesRepository"
 
-export class PrismaUsersRepository implements IssuesRepository {
+export class PrismaIssuesRepository implements IssuesRepository {
 
     async create({ number, date, cover, file, language, topics }: IssuesRepositoryData) {
         
@@ -18,9 +18,20 @@ export class PrismaUsersRepository implements IssuesRepository {
         return issue
     }
 
-
     async listAllIssues() {
         const allIssues = await prisma.issue.findMany()
         return allIssues
+    }
+
+    async sortIssuesByDate(type: string) {
+        const issuesByDate = await prisma.issue.findMany({
+            orderBy: [
+                {
+                    date: type == 'asc' ? 'asc' : 'desc'
+                }
+            ]
+        })
+
+        return issuesByDate
     }
 }

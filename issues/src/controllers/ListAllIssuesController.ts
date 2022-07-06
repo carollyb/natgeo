@@ -1,12 +1,12 @@
 import {Request, Response} from "express";
-import { PrismaUsersRepository } from "../repositories/prisma/PrismaUsersRepository";
+import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
 import { ListAllIssuesUsecase } from "../usecases/ListAllIssuesUsecase";
 
 export default class ListAllIssuesController {
     static async handle(request: Request, response: Response) {
-        const prismaUsersRepository = new PrismaUsersRepository()
+        const prismaIssuesRepository = new PrismaIssuesRepository()
         const listAllIssuesUsecase = new ListAllIssuesUsecase(
-            prismaUsersRepository
+            prismaIssuesRepository
         )
 
         try {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { PrismaUsersRepository } from "../repositories/prisma/PrismaUsersRepository";
+import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
 import { CreateIssueUsecase } from "../usecases/CreateIssueUsecase"
 
 export default class CreateIssueController {
@@ -15,9 +15,9 @@ export default class CreateIssueController {
         } = request.body
 
         try {
-            const prismaUsersRepository = new PrismaUsersRepository()
+            const prismaIssuesRepository = new PrismaIssuesRepository()
             const createIssueUsecase = new CreateIssueUsecase(
-                prismaUsersRepository
+                prismaIssuesRepository
             )
             const issue = await createIssueUsecase.execute({
                 number,
