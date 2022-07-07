@@ -34,4 +34,17 @@ export class PrismaIssuesRepository implements IssuesRepository {
 
         return issuesByDate
     }
+
+    async searchByTopic(topic: string) {
+        const issuesByTopic = await prisma.issue.findMany({
+            where: {
+                topics: {
+                    contains: topic,
+                    mode: 'insensitive'
+                }
+            }
+        })
+
+        return issuesByTopic
+    }
 }
