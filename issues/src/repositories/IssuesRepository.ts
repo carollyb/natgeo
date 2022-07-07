@@ -19,4 +19,6 @@ export interface Issue {
 export interface IssuesRepository {
     create: (data: IssuesRepositoryData) => Promise<Issue>
     listAllIssues: () => Promise<any[]>
+    sortIssuesByDate: (type: string) => Promise<any[]>
+    searchByTopic: (topic: string) => Promise<any[]>
 }
