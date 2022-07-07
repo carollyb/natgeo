@@ -47,4 +47,17 @@ export class PrismaIssuesRepository implements IssuesRepository {
 
         return issuesByTopic
     }
+
+    async searchByDateRange(startDate: Date, endDate: Date) {
+        const issuesInDateRange = await prisma.issue.findMany({
+            where: {
+                date: {
+                    gte: startDate,
+                    lte: endDate
+                }
+            }
+        })
+
+        return issuesInDateRange
+    }
 }

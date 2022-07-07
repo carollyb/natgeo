@@ -21,4 +21,5 @@ export interface IssuesRepository {
     listAllIssues: () => Promise<any[]>
     sortIssuesByDate: (type: string) => Promise<any[]>
     searchByTopic: (topic: string) => Promise<any[]>
+    searchByDateRange: (startDate: any, endDate: any) => Promise<any[]>
 }
