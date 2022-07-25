@@ -1,3 +1,4 @@
+import { isDate } from "util/types";
 import { IssuesRepository } from "../repositories/IssuesRepository";
 
 interface CreateIssueUsecaseRequest {
@@ -21,18 +22,29 @@ export class CreateIssueUsecase {
             number = Number(number)
             date = new Date(date)
         
+            let data = isDate(date);
+            if(!data) {
+                throw new Error(`Invalid date format`)
+            }
+            
+            if(!number || !file) {
+                throw new Error(`Cannot have empty fields`)
+            }
+
             const issue = await this.issuesRepository.create({
                 number,
                 date,
                 cover, 
                 file,
-                language, 
+                language,
                 topics
             })
 
             return issue
         } catch (error) {
-            throw new Error(`Could not create issue`)
+            if (error instanceof Error) {
+                throw new Error(`Could not create issue: ${error.message}`)
+            }
         }
     }
 }
