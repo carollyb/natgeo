@@ -1,9 +1,7 @@
-import { PrismaIssuesRepository } from "../src/repositories/prisma/PrismaIssuesRepository"
 import { CreateIssueUsecase } from "../src/usecases/CreateIssueUsecase"
 
 const createIssueCreationSpy = jest.fn();
 
-const prismaIssuesRepository = new PrismaIssuesRepository()
 const createIssueUsecase = new CreateIssueUsecase(
   { create: createIssueCreationSpy }
 )

@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
 import { SearchIssueByDateRangeUsecase } from "../usecases/SearchIssueByDateRangeUsecase";
 
-interface SearchIssueByDateRangeQuery {
-    startDate: any,
-    endDate: any
+type SearchIssueByDateRangeQuery = {
+    startDate: any;
+    endDate: any;
 }
 
 export default class SearchIssueByDateRangeController {

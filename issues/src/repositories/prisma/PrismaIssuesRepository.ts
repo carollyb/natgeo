@@ -1,9 +1,10 @@
 import prisma from "../../database/index"
-import { IssuesRepository, Issue, IssuesRepositoryData } from "../IssuesRepository"
+import { IssuesRepository } from "../../domain/repository/IssuesRepository"
+import { TIssue } from "../../domain/entity/Issue"
 
 export class PrismaIssuesRepository implements IssuesRepository {
 
-    async create({ number, date, cover, file, language, topics }: IssuesRepositoryData) {
+    async create({ number, date, cover, file, language, topics }: TIssue) {
         
         const issue = await prisma.issue.create({
             data: {
@@ -21,6 +22,15 @@ export class PrismaIssuesRepository implements IssuesRepository {
     async listAllIssues() {
         const allIssues = await prisma.issue.findMany()
         return allIssues
+    }
+
+    async listOneIssue(id: string) {
+        const issue = await prisma.issue.findUnique({
+                where: {
+                    id
+                }
+            })
+        return issue
     }
 
     async sortIssuesByDate(type: string) {
@@ -59,5 +69,15 @@ export class PrismaIssuesRepository implements IssuesRepository {
         })
 
         return issuesInDateRange
+    }
+
+    async deleteIssue(id: string) {
+        const issueToDelete = await prisma.issue.delete({
+            where: {
+                id
+            }
+        })
+
+        return issueToDelete
     }
 }

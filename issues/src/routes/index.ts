@@ -1,6 +1,8 @@
 import { Router } from "express";
 import CreateIssueController from "../controllers/CreateIssueController";
+import DeleteIssueController from "../controllers/DeleteIssueController";
 import ListAllIssuesController from "../controllers/ListAllIssuesController";
+import ListOneIssueController from "../controllers/ListOneIssueController";
 import SearchIssueByDateRangeController from "../controllers/SearchIssueByDateRangeController";
 import SearchIssueByTopicController from "../controllers/SearchIssueByTopicController";
 import SortIssuesByDateController from "../controllers/SortIssuesByDateController";
@@ -12,5 +14,8 @@ router.get("/issues/sort", SortIssuesByDateController.handle)
 router.get("/issues/search", SearchIssueByTopicController.handle)
 router.get("/issues/date", SearchIssueByDateRangeController.handle)
 router.post("/issues", CreateIssueController.handle)
+router.delete("/issue/:id", DeleteIssueController.handle)
+router.get("/issue/:id", ListOneIssueController.handle)
+
 
 export default router

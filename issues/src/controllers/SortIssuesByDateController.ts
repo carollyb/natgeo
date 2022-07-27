@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
 import { SortIssuesByDateUsecase } from "../usecases/SortIssuesByDateUsecase";
 
-interface Query {
+type Query = {
     type: string
 }
 export default class SortIssuesByDateController {
