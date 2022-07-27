@@ -1,4 +1,4 @@
-import { IssuesRepository } from "../repositories/IssuesRepository";
+import { IssuesRepository } from "../domain/repository/IssuesRepository";
 
 export class SortIssuesByDateUsecase {
     constructor(

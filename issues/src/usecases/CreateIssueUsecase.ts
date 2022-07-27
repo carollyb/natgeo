@@ -1,5 +1,5 @@
 import { isDate } from "util/types";
-import { IssuesRepository } from "../repositories/IssuesRepository";
+import { IssuesRepository } from "../domain/repository/IssuesRepository";
 
 type CreateIssueUsecaseRequest = {
     number: any;
