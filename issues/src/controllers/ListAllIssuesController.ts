@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
+import { PrismaIssuesRepository } from "../infra/repositories/PrismaIssuesRepository";
 import { ListAllIssuesUsecase } from "../usecases/ListAllIssuesUsecase";
 
 export default class ListAllIssuesController {

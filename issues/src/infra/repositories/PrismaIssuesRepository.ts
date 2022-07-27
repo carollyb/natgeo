@@ -1,4 +1,4 @@
-import prisma from "../../database/index"
+import prisma from "../database/index"
 import { IssuesRepository } from "../../domain/repository/IssuesRepository"
 import { TIssue } from "../../domain/entity/Issue"
 

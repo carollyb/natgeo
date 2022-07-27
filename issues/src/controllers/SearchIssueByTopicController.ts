@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
+import { PrismaIssuesRepository } from "../infra/repositories/PrismaIssuesRepository";
 import { SearchIssueByTopicUsecase } from "../usecases/SearchIssueByTopicUsecase";
 
 type Query = {
