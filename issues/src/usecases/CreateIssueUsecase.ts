@@ -22,8 +22,8 @@ export class CreateIssueUsecase {
             number = Number(number)
             date = new Date(date)
         
-            let data = isDate(date);
-            if(!data) {
+            let format = isDate(date);
+            if(!format) {
                 throw new Error(`Invalid date format`)
             }
             
