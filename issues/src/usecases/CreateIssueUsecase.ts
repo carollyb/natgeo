@@ -1,13 +1,13 @@
 import { isDate } from "util/types";
 import { IssuesRepository } from "../repositories/IssuesRepository";
 
-interface CreateIssueUsecaseRequest {
-    number: any,
-    date: any,
-    cover: string,
-    file: string,
-    language: string,
-    topics: string
+type CreateIssueUsecaseRequest = {
+    number: any;
+    date: any;
+    cover: string;
+    file: string;
+    language: string;
+    topics: string;
 }
 
 export class CreateIssueUsecase {

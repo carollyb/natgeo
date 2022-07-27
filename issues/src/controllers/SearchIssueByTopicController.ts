@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
 import { SearchIssueByTopicUsecase } from "../usecases/SearchIssueByTopicUsecase";
 
-interface Query {
+type Query = {
     topic: string
 }
 

@@ -14,7 +14,7 @@ describe('Search issues by topic', () => {
 
   it('should throw error if topic does not exist', async () => {
     
-    await expect(searchIssueByTopicUsecase.execute('Random')).rejects.toThrow();
+    await expect(searchIssueByTopicUsecase.execute('Random')).rejects.toThrow()
     
     expect(searchIssuesSpy).toHaveBeenCalled()
   })

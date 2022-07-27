@@ -1,8 +1,8 @@
 import { IssuesRepository } from "../repositories/IssuesRepository";
 
-interface SearchIssueByDateRangeRequest {
-    startDate: any,
-    endDate: any
+type SearchIssueByDateRangeRequest = {
+    startDate: any;
+    endDate: any;
 }
 
 export class SearchIssueByDateRangeUsecase {
