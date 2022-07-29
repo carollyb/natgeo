@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaIssuesRepository } from "../infra/repositories/PrismaIssuesRepository";
-import ListOneIssueUsecase from "../usecases/ListOneIssueUsecase";
+import { issuesRepository } from "../../server";
+import ListOneIssueUsecase from "../../usecases/ListOneIssueUsecase";
 
 export default class ListOneIssueController {
 
@@ -9,9 +9,8 @@ export default class ListOneIssueController {
     const { id } = request.params
 
     try {
-      const prismaIssuesRepository = new PrismaIssuesRepository()
       const listOneIssueUseCase = new ListOneIssueUsecase(
-      prismaIssuesRepository
+        issuesRepository
       )
 
       const issueFound = await listOneIssueUseCase.execute(id)

@@ -2,12 +2,12 @@ import { isDate } from "util/types";
 import { IssuesRepository } from "../domain/repository/IssuesRepository";
 
 type CreateIssueUsecaseRequest = {
-    number: any;
-    date: any;
-    cover: string;
-    file: string;
-    language: string;
-    topics: string;
+    number: any
+    date: any
+    cover: string
+    file: string
+    language: string
+    topics: string
 }
 
 export class CreateIssueUsecase {

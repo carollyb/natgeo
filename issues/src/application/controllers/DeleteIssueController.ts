@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaIssuesRepository } from "../infra/repositories/PrismaIssuesRepository";
-import { DeleteIssueUsecase } from "../usecases/DeleteIssueUsecase";
+import { issuesRepository } from "../../server";
+import { DeleteIssueUsecase } from "../../usecases/DeleteIssueUsecase";
 
 export default class DeleteIssueController {
 
@@ -9,12 +9,11 @@ export default class DeleteIssueController {
     const { id } = request.params
 
     try {
-      const prismaIssuesRepository = new PrismaIssuesRepository()
-      const deleteIssueUseCase = new DeleteIssueUsecase(
-      prismaIssuesRepository
+      const deleteIssueUsecase = new DeleteIssueUsecase(
+        issuesRepository
       )
 
-      const deletedIssue = await deleteIssueUseCase.execute(id)
+      const deletedIssue = await deleteIssueUsecase.execute(id)
       return response.status(202).json({
         deleted: deletedIssue
       })

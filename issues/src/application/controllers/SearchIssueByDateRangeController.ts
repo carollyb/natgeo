@@ -1,17 +1,11 @@
 import { Request, Response } from "express";
-import { PrismaIssuesRepository } from "../infra/repositories/PrismaIssuesRepository";
-import { SearchIssueByDateRangeUsecase } from "../usecases/SearchIssueByDateRangeUsecase";
-
-type SearchIssueByDateRangeQuery = {
-    startDate: any;
-    endDate: any;
-}
+import { issuesRepository } from "../../server";
+import { SearchIssueByDateRangeUsecase } from "../../usecases/SearchIssueByDateRangeUsecase";
 
 export default class SearchIssueByDateRangeController {
     static async handle(request: Request, response: Response) {
-        const prismaIssuesRepository = new PrismaIssuesRepository();
         const searchIssueByDateRangeUsecase = new SearchIssueByDateRangeUsecase(
-            prismaIssuesRepository
+            issuesRepository
         )
         try {
             const { startDate, endDate } = request.query
