@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaIssuesRepository } from "../repositories/prisma/PrismaIssuesRepository";
-import { SearchIssueByTopicUsecase } from "../usecases/SearchIssueByTopicUsecase";
+import { issuesRepository } from "../../server";
+import { SearchIssueByTopicUsecase } from "../../usecases/SearchIssueByTopicUsecase";
 
 type Query = {
     topic: string
@@ -8,9 +8,8 @@ type Query = {
 
 export default class SearchIssueByTopicController {
     static async handle(request: Request, response: Response) {
-        const prismaIssuesRepository = new PrismaIssuesRepository();
         const searchIssueByTopicUsecase = new SearchIssueByTopicUsecase(
-            prismaIssuesRepository
+            issuesRepository
         )
         try {
             const { topic } = request.query as unknown as Query

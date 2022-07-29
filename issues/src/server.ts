@@ -1,11 +1,17 @@
 import express, { Request, Response } from "express";
 const port = process.env.PORT || 3002
-import routes from "./routes"
+import routes from "./main/routes"
 import cors from "cors"
+import PrismaAdapter from "./infra/database/PrismaAdapter";
+import { IssueDatabaseRepository } from "./infra/repository/IssueDatabaseRepository";
 
 const app = express()
 
 app.use(express.json())
+
+const connection = new PrismaAdapter()
+export const issuesRepository = new IssueDatabaseRepository(connection)
+
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
@@ -18,6 +24,5 @@ app.get("/", (req: Request, res: Response) => {
 })
 
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-    
+    console.log(`Servidor rodando na porta ${port}`)
 })

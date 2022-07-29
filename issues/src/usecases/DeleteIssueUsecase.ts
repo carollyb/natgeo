@@ -1,4 +1,3 @@
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { IssuesRepository } from "../domain/repository/IssuesRepository";
 
 export class DeleteIssueUsecase {
