@@ -28,11 +28,7 @@ export class IssueDatabaseRepository implements IssuesRepository {
     }
 
     async listOneIssue(id: string) {
-        const issue = await this.connection.findUnique({
-                where: {
-                    id
-                }
-            })
+        const issue = await this.connection.findUnique(id)
         return issue
     }
 

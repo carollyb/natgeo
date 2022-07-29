@@ -19,7 +19,11 @@ export default class PrismaAdapter implements Connection {
   }
 
   async findUnique(id: any) {
-    let issue = await this.database.issue.findUnique(id)
+    let issue = await this.database.issue.findUnique({
+      where: {
+          id
+      }
+  })
     return issue
   }
 
@@ -58,9 +62,13 @@ export default class PrismaAdapter implements Connection {
   })
   return issues
   }
-
+  //colocar o where
   async delete(id: any) {
-    let issue = await this.database.issue.delete(id)
+    let issue = await this.database.issue.delete({
+      where: {
+          id
+      }
+  })
     return issue
   }
 
