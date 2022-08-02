@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { TIssue } from "../../domain/entity/Issue";
 import Connection from "./Connection";
 
 export default class PrismaAdapter implements Connection {
@@ -8,8 +9,17 @@ export default class PrismaAdapter implements Connection {
     this.database = new PrismaClient()
   }
 
-  async create(params: any){
-    let issue = await this.database.issue.create(params)
+  async create({ number, date, cover, file, language, topics }: TIssue){
+    let issue = await this.database.issue.create({
+      data: {
+          number: number,
+          date: date,
+          cover: cover,
+          file: file,
+          language: language,
+          topics: topics
+      }
+  })
     return issue
   }
 
