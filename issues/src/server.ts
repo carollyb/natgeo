@@ -1,28 +1,14 @@
-import express, { Request, Response } from "express";
-const port = process.env.PORT || 3002
-import routes from "./main/routes"
-import cors from "cors"
+import ExpressAdapter from "./infra/api/ExpressAdapter";
+import Router from "./infra/api/Router";
 import PrismaAdapter from "./infra/database/PrismaAdapter";
 import { IssueDatabaseRepository } from "./infra/repository/IssueDatabaseRepository";
 
-const app = express()
+const port = process.env.PORT || 3002;
 
-app.use(express.json())
-
-const connection = new PrismaAdapter()
+const httpServer = new ExpressAdapter();
+const connection = new PrismaAdapter();
 export const issuesRepository = new IssueDatabaseRepository(connection)
+const router = new Router(httpServer, issuesRepository);
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}))
-app.use(routes)
-
-app.get("/", (req: Request, res: Response) => {
-    res.status(200).json({
-        message: "API Natgeo - Issues"
-    })
-})
-
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`)
-})
+router.init();
+httpServer.listen(3002)
