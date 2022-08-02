@@ -9,7 +9,7 @@ import SortIssuesByDateController from "../../application/controllers/SortIssues
 
 const router = Router()
 
-router.get("/issues", ListAllIssuesController.handle)
+//router.get("/issues", ListAllIssuesController.handle)
 router.get("/issues/sort", SortIssuesByDateController.handle)
 router.get("/issues/search", SearchIssueByTopicController.handle)
 router.get("/issues/date", SearchIssueByDateRangeController.handle)
