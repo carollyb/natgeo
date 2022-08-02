@@ -7,18 +7,9 @@ export class IssueDatabaseRepository implements IssuesRepository {
     constructor(readonly connection: Connection) {
     }
 
-    async create({ number, date, cover, file, language, topics }: TIssue) {
+    async create(params: TIssue) {
 
-        const issue = await this.connection.create({
-            data: {
-                number: number,
-                date: date,
-                cover: cover,
-                file: file,
-                language: language,
-                topics: topics
-            }
-        })
+        const issue = await this.connection.create(params)
         return issue
     }
 
