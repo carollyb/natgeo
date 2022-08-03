@@ -10,9 +10,8 @@ export default class ListAllIssuesController {
 
         try {
             const results = await listAllIssuesUsecase.execute();
-            return response.status(200).json(
-                results
-            )
+            return results
+            
         } catch (error) {
             return response.status(400).json({
                 error: `Não pôde encontrar issues`

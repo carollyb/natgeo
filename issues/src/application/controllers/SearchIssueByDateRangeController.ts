@@ -15,12 +15,10 @@ export default class SearchIssueByDateRangeController {
                     endDate }
             )
 
-            return response.status(200).json(
-                issuesInDateRange
-            )
+            return issuesInDateRange
         } catch (error) {
             if (error instanceof Error) {
-                return response.status(400).json(error.message)
+                return error.message
             }
         }
     }

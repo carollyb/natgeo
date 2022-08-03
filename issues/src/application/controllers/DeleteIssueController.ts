@@ -1,12 +1,11 @@
-import { Request, Response } from "express";
 import { issuesRepository } from "../../server";
 import { DeleteIssueUsecase } from "../../usecases/DeleteIssueUsecase";
 
 export default class DeleteIssueController {
 
-  static async handle(request: Request, response: Response){
+  static async handle(request: any){
     
-    const { id } = request.params
+    const { id } = request
 
     try {
       const deleteIssueUsecase = new DeleteIssueUsecase(
@@ -14,14 +13,10 @@ export default class DeleteIssueController {
       )
 
       const deletedIssue = await deleteIssueUsecase.execute(id)
-      return response.status(202).json({
-        deleted: deletedIssue
-      })
+      return deletedIssue
     } catch (error) {
       if (error instanceof Error) {
-        response.status(400).json({
-          erro: error.message
-        })
+        return error.message
       }
     }
   }

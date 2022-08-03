@@ -14,10 +14,10 @@ export default class SearchIssueByTopicController {
         try {
             const { topic } = request.query as unknown as Query
             const issuesByTopic = await searchIssueByTopicUsecase.execute(topic)
-            return response.status(200).json(issuesByTopic)
+            return issuesByTopic
         } catch (error) {
             if (error instanceof Error) {
-                return response.status(400).json(error.message)
+                return error.message
             }
         }
     }

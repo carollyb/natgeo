@@ -1,9 +1,7 @@
-import { Request, Response } from "express"
-import { issuesRepository } from "../../server";
+import { issuesRepository, httpServer } from "../../server";
 import { CreateIssueUsecase } from "../../usecases/CreateIssueUsecase"
-
 export default class CreateIssueController {
-  static async handle(request: Request, response: Response) {
+  static async handle(request: any) {
 
     const {
       number,
@@ -12,7 +10,7 @@ export default class CreateIssueController {
       file,
       language,
       topics
-    } = request.body
+    } = request
 
     try {
       const createIssueUsecase = new CreateIssueUsecase(
@@ -27,15 +25,12 @@ export default class CreateIssueController {
         topics
       })
 
-      return response.status(201).json(
-        issue
-      )
+      return issue
     } catch (error) {
       if (error instanceof Error) {
-        return response.status(400).json({
-          error: error.message
-        })
+        return error.message
       }
     }
   }
 }
+
