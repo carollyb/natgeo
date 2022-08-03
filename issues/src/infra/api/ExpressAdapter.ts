@@ -1,8 +1,6 @@
 import express, { Request, Response } from "express"
-import PrismaAdapter from "../database/PrismaAdapter";
-import { IssueDatabaseRepository } from "../repository/IssueDatabaseRepository";
 import HttpServer from "./HttpServer";
-import routes from "../../main/routes"
+//import routes from "../../main/routes"
 import cors from "cors"
 
 export default class ExpressAdapter implements HttpServer {
@@ -15,7 +13,6 @@ export default class ExpressAdapter implements HttpServer {
     this.app.use(cors({
         origin: 'http://localhost:3000'
     }))
-    this.app.use(routes)
   
   }
 

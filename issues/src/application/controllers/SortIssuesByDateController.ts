@@ -14,10 +14,10 @@ export default class SortIssuesByDateController {
         try {
             const { type } = request.query as unknown as Query
             const issuesByDate = await sortIssuesByDateUsecase.execute(type)
-            return response.status(200).json(issuesByDate)
+            return issuesByDate
         } catch (error) {
             if (error instanceof Error) {
-                return response.status(400).json(error.message)
+                return error.message
             }
         }
 
