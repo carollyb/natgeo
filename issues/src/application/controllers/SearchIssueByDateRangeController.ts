@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { issuesRepository } from "../../server";
 import { SearchIssueByDateRangeUsecase } from "../../usecases/SearchIssueByDateRangeUsecase";
 
-export default class SearchIssueByDateRangeController {
+export class SearchIssueByDateRangeController {
     static async handle(request: Request, response: Response) {
         const searchIssueByDateRangeUsecase = new SearchIssueByDateRangeUsecase(
             issuesRepository

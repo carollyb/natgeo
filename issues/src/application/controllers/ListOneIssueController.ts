@@ -1,7 +1,7 @@
 import { issuesRepository } from "../../server";
 import ListOneIssueUsecase from "../../usecases/ListOneIssueUsecase";
 
-export default class ListOneIssueController {
+export class ListOneIssueController {
 
   static async handle(params: any){
     

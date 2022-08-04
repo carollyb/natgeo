@@ -1,7 +1,7 @@
 import { issuesRepository } from "../../server";
 import { DeleteIssueUsecase } from "../../usecases/DeleteIssueUsecase";
 
-export default class DeleteIssueController {
+export class DeleteIssueController {
 
   static async handle(request: any){
     

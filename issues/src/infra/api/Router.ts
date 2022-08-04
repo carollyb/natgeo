@@ -1,10 +1,12 @@
-import CreateIssueController from "../../application/controllers/CreateIssueController";
-import DeleteIssueController from "../../application/controllers/DeleteIssueController";
-import ListAllIssuesController from "../../application/controllers/ListAllIssuesController";
-import ListOneIssueController from "../../application/controllers/ListOneIssueController";
-import SearchIssueByDateRangeController from "../../application/controllers/SearchIssueByDateRangeController";
-import SearchIssueByTopicController from "../../application/controllers/SearchIssueByTopicController";
-import SortIssuesByDateController from "../../application/controllers/SortIssuesByDateController";
+import { 
+  CreateIssueController, 
+  DeleteIssueController,
+  ListAllIssuesController,
+  ListOneIssueController,
+  SearchIssueByDateRangeController,
+  SearchIssueByTopicController,
+  SortIssuesByDateController
+  } from "../../application/controllers";
 import { IssuesRepository } from "../../domain/repository/IssuesRepository";
 import HttpServer from "./HttpServer";
 export default class Router {
@@ -14,7 +16,8 @@ export default class Router {
   async init() {
     
     this.httpServer.on("get", "/", async (params: any, body: any) => {
-      return body
+      const message = { message: "NatGeo" }
+      return message
     })
 
     this.httpServer.on("get", "/issues", ListAllIssuesController.handle)
