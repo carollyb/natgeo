@@ -1,6 +1,6 @@
 import { issuesRepository, httpServer } from "../../server";
 import { CreateIssueUsecase } from "../../usecases/CreateIssueUsecase"
-export default class CreateIssueController {
+export class CreateIssueController {
   static async handle(request: any) {
 
     const {

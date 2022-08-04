@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express"
 import HttpServer from "./HttpServer";
-//import routes from "../../main/routes"
 import cors from "cors"
 
 export default class ExpressAdapter implements HttpServer {

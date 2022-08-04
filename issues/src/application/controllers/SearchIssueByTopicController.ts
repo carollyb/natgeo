@@ -5,8 +5,7 @@ import { SearchIssueByTopicUsecase } from "../../usecases/SearchIssueByTopicUsec
 type Query = {
     topic: string
 }
-
-export default class SearchIssueByTopicController {
+export class SearchIssueByTopicController {
     static async handle(request: Request, response: Response) {
         const searchIssueByTopicUsecase = new SearchIssueByTopicUsecase(
             issuesRepository
