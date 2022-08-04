@@ -1,21 +1,27 @@
-import CreateUserService from "../../services/user/CreateUserService"
 import { Request, Response } from "express"
+import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository"
+import { CreateUserUsecase } from "../../usecases/user/CreateUserUsecase"
 export default class CreateUserController {
     static async handle(request: Request, response: Response) {
+        const { full_name, username, password } = request.body
         try {
-            const { full_name, username, password } = request.body
-            const User = {
-                full_name,
-                username,
-                password
-            }
-            const user = await CreateUserService.execute(User)
-            response.status(201).json({
-                "user_created": user
-            })
+            const prismaUsersRepository = new PrismaUsersRepository()
+            const createUserUsecase = new CreateUserUsecase(
+                prismaUsersRepository
+            )
+
+            const user = await createUserUsecase.execute(
+                {
+                    full_name,
+                    username,
+                    password
+                }
+            )
+            
+            return response.status(201).json(user)
         } catch (error) {
             response.status(400).json({
-                error: "erro"
+                error
             })
         }
     }

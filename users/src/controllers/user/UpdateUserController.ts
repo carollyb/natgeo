@@ -1,20 +1,28 @@
 import { Request, Response } from "express";
-import UpdateUserService from "../../services/user/UpdateUserService";
-
+import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository"
+import { UpdateUserUsecase } from "../../usecases/user/UpdateUserUsecase"
 export default class UpdateUserController {
     static async handle(request: Request, response: Response) {
         try {
             const { id } = request.params;
+
+            const prismaUsersRepository = new PrismaUsersRepository()
+            const updateUserUsecase = new UpdateUserUsecase(
+                prismaUsersRepository
+            )
+
             const {
                 newFullName,
                 newUsername,
                 newPassword
             } = request.body
-            const newUserData = await UpdateUserService.execute({
+
+            const newUserData = await updateUserUsecase.execute({
                 id,
                 newFullName,
                 newUsername,
                 newPassword })
+                
             return response.status(202).json({
                 message: "User updated",
                 updated: newUserData
