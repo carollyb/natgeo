@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository"
-import { CreateUserUsecase } from "../../usecases/user/CreateUserUsecase"
+import { PrismaUsersRepository } from "../../../repositories/prisma/PrismaUsersRepository"
+import { CreateUserUsecase } from "../../../usecases/user/CreateUserUsecase"
+
 export default class CreateUserController {
     static async handle(request: Request, response: Response) {
         const { full_name, username, password } = request.body

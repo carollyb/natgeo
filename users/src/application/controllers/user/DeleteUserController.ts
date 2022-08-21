@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository"
-import { DeleteUserUsecase } from "../../usecases/user/DeleteUserUsecase"
+import { PrismaUsersRepository } from "../../../repositories/prisma/PrismaUsersRepository"
+import { DeleteUserUsecase } from "../../../usecases/user/DeleteUserUsecase"
 
 export default class DeleteUserController {
     static async handle(request: Request, response: Response) {

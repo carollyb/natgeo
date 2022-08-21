@@ -1,4 +1,5 @@
 import { UsersRepository } from "../../repositories/UsersRepository"
+import { compare } from "bcrypt"
 
 interface AuthenticateUserUsecaseRequest {
     username: string,
@@ -11,17 +12,22 @@ export class AuthenticateUserUsecase {
     ) {}
 
     async execute(request: AuthenticateUserUsecaseRequest) {
-        try {
-            const { username, password } = request
+        const { username, password } = request
 
-            const auth = await this.usersRepository.login({
-                username,
-                password
-            })
+        const userExists = await this.usersRepository.searchUser(username)
 
-            return auth
-        } catch (error) {
-            throw new Error(`Unexpected Error`)
-        }
+        if (!userExists) throw new Error("User does not exist")
+
+        const passwordMatch = await compare(password, userExists.password);
+
+        if (!passwordMatch) throw new Error("Invalid login credentials")
+
+        const token = await this.usersRepository.login({
+            username,
+            id: userExists.id
+        })
+
+        const refreshToken = await this.usersRepository.refreshToken(userExists.id)
+        return {token, refreshToken}
     }
 }

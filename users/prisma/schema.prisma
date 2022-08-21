@@ -15,3 +15,11 @@ model User {
 
   @@map("user")
 }
+
+model RefreshToken {
+  id String @id @default(uuid()) @map("_id")
+  expiresIn Int
+  user_id String
+
+  @@map("refresh_token")
+}
