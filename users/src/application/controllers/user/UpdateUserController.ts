@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository"
-import { UpdateUserUsecase } from "../../usecases/user/UpdateUserUsecase"
+import { PrismaUsersRepository } from "../../../repositories/prisma/PrismaUsersRepository"
+import { UpdateUserUsecase } from "../../../usecases/user/UpdateUserUsecase"
+
 export default class UpdateUserController {
     static async handle(request: Request, response: Response) {
         try {

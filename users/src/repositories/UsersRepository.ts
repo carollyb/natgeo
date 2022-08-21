@@ -20,15 +20,17 @@ export interface UserUpdateData {
 
 export interface LoginUserData {
     username: string,
-    password: string
+    id: string
 }
 
 export interface UsersRepository {
     create: (data: UsersRepositoryData) => Promise<User>
     listAllUsers: () => Promise<any[]>
-    searchUser: (username: string) => Promise<any[]>
+    searchUser: (username: string) => Promise<any>
+    searchUserById: (id: string) => Promise<any>
     sortUsersByUsername: (type: string) => Promise<any[]>
     update: (data: UserUpdateData) => Promise<User>
     delete: (id: string) => Promise<void>
-    login: (data: LoginUserData) => Promise<any>
+    login: (data: any) => Promise<any>
+    refreshToken: (user_id: string) => Promise<any>
 }

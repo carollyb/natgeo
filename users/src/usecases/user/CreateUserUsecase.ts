@@ -1,11 +1,9 @@
 import { UsersRepository } from "../../repositories/UsersRepository";
-
 interface CreateUserUsecaseRequest {
     full_name: string,
     username: string,
     password: string,
 }
-
 export class CreateUserUsecase {
     constructor(
         private userRepository: UsersRepository

@@ -3,6 +3,7 @@ import { UsersRepositoryData, UsersRepository, User, UserUpdateData, LoginUserDa
 import { hash, compare } from "bcrypt"
 import { sign } from "jsonwebtoken"
 import auth from "../../config/auth"
+import dayjs from "dayjs"
 export class PrismaUsersRepository implements UsersRepository {
     async create({ full_name, username, password }: UsersRepositoryData) {
         const passwordHash = await hash(password, 8)
@@ -23,9 +24,18 @@ export class PrismaUsersRepository implements UsersRepository {
     }
 
     async searchUser(username: string) {
-        const searchUser = await prisma.user.findMany({
+        const searchUser = await prisma.user.findFirst({
             where: {
                 username: username
+            }
+        })
+        return searchUser
+    }
+
+    async searchUserById(id: string): Promise<any> {
+        const searchUser = await prisma.user.findFirst({
+            where: {
+                id: id
             }
         })
         return searchUser
@@ -64,30 +74,24 @@ export class PrismaUsersRepository implements UsersRepository {
         return newUserData
     }
 
-    async login({ username, password }: LoginUserData) {
-        try {
-            const userExists = await this.searchUser(username)
+    async login({ username, id }: any) {
+        const token = sign({
+            username: username
+        }, auth.secret, {
+            subject: id,
+            expiresIn: "20s"
+        })
+        return token
+    }
 
-            if(userExists.length === 0) {
-                throw new Error("User does not exist")
+    async refreshToken (user_id: string): Promise<any> {
+        const expiresIn = dayjs().add(15, "second").unix()
+        const generateRefreshToken = await prisma.refreshToken.create({
+            data: {
+                user_id,
+                expiresIn
             }
-
-            const passwordMatch = await compare(password, userExists[0].password);
-
-            if (!passwordMatch) {
-                throw new Error("Invalid login credentials")
-            }
-
-            const token = sign({
-                username: userExists[0].username
-            }, auth.secret, {
-                subject: userExists[0].username,
-                expiresIn: "1d"
-            })
-
-            return token
-        } catch (error) {
-            throw new Error("Unexpected error")
-        }
+        })
+        return generateRefreshToken
     }
 }

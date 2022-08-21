@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository"
-import { ListAllUsersUsecase } from "../../usecases/user/ListAllUsersUsecase"
+import { PrismaUsersRepository } from "../../../repositories/prisma/PrismaUsersRepository"
+import { ListAllUsersUsecase } from "../../../usecases/user/ListAllUsersUsecase"
+
 export default class ListAllUsersController {
     static async handle(request: Request, response: Response) {
         const prismaUsersRepository = new PrismaUsersRepository()
