@@ -7,5 +7,5 @@ COPY tsconfig.json ./
 COPY . .
 RUN npm install
 RUN npx prisma generate
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 EXPOSE 3002

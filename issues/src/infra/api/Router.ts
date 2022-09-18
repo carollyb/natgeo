@@ -27,7 +27,10 @@ export default class Router {
       return response
     })
 
-    this.httpServer.on("get", "/issues/sort", SortIssuesByDateController.handle)
+    this.httpServer.on("get", "/issues/sort/:type", async (params: any, body: any) => {
+      const response = await SortIssuesByDateController.handle(params)
+      return response
+    })
 
     this.httpServer.on("get", "/issues/search", SearchIssueByTopicController.handle)
 

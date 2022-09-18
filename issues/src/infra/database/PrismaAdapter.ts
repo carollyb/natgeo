@@ -41,7 +41,7 @@ export default class PrismaAdapter implements Connection {
     let issues = await this.database.issue.findMany({
       orderBy: [
           {
-              date: params == 'asc' ? 'asc' : 'desc'
+              date: params
           }
       ]
   })
