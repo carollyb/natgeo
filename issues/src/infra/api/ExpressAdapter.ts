@@ -9,9 +9,7 @@ export default class ExpressAdapter implements HttpServer {
   
     this.app.use(express.json())
   
-    this.app.use(cors({
-        origin: 'http://localhost:3000'
-    }))
+    this.app.use(cors())
   
   }
 

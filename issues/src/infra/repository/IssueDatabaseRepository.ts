@@ -4,45 +4,42 @@ import Connection from "../database/Connection"
 
 export class IssueDatabaseRepository implements IssuesRepository {
     
-    constructor(readonly connection: Connection) {
-    }
+  constructor(
+    readonly connection: Connection
+    ) {}
 
-    async create(params: TIssue) {
+  async create(params: TIssue) {
+    const issue = await this.connection.create(params)
+    return issue
+  }
 
-        const issue = await this.connection.create(params)
-        return issue
-    }
+  async listAllIssues() {
+    const allIssues = await this.connection.findMany()
+    return allIssues
+  }
 
-    async listAllIssues() {
-        const allIssues = await this.connection.findMany()
-        return allIssues
-    }
+  async listOneIssue(id: string) {
+    const issue = await this.connection.findUnique(id)
+    return issue
+  }
 
-    async listOneIssue(id: string) {
-        const issue = await this.connection.findUnique(id)
-        return issue
-    }
+  async sortIssuesByDate(type: string) {
+    const issuesByDate = await this.connection.filterByDate(type)
+    return issuesByDate
+  }
 
-    async sortIssuesByDate(type: string) {
-        const issuesByDate = await this.connection.filterByDate(type)
-        return issuesByDate
-    }
+  async searchByTopic(topic: string) {
+    const issuesByTopic = await this.connection.filterByTopic(topic)
+    return issuesByTopic
+  }
 
-    async searchByTopic(topic: string) {
-        const issuesByTopic = await this.connection.filterByTopic(topic)
+  async searchByDateRange(startDate: Date, endDate: Date) {
+    const issuesInDateRange = await this.connection.filterByDateRange(startDate, endDate)
+    return issuesInDateRange
+  }
 
-        return issuesByTopic
-    }
-
-    async searchByDateRange(startDate: Date, endDate: Date) {
-        const issuesInDateRange = await this.connection.filterByDateRange(startDate, endDate)
-
-        return issuesInDateRange
-    }
-
-    async deleteIssue(id: string) {
-        const issueToDelete = await this.connection.delete(id)
-
-        return issueToDelete
-    }
+  async deleteIssue(id: string) {
+    const issueToDelete = await this.connection.delete(id)
+    return issueToDelete
+  }
 }
