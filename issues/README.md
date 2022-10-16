@@ -3,8 +3,7 @@
   <i>NatGeo helps organizing magazine issues digital files, allowing creation, deletion and searching magazine issues by multiple parameters</i><br />
   <i>🚧 In progress 🚧</i><br />
 </p>
-<p align="center">This project was created as a study case to apply some topics I am interested in studying, such as: SOLID principles, Test Driven Development and Docker... Check [Development](#development) section to see a full list of design patterns, technologies and libraries used</p>
-<br />
+This project was created as a study case to apply some topics I am interested in studying, such as: SOLID principles, Test Driven Development and Docker... Check [Development](#development) section to see a full list of design patterns, technologies and libraries used
 
 <details>
 <summary><b>Contents</b></summary>
@@ -13,10 +12,12 @@
   - [GET](#get)
     - [`/issues`](#issues)
     - [`/issues/:id`](#issuesid)
+    - [`/issues/sort/:type`](#issuessorttype)
+    - [`/issues/search?topic={topic}`](#issuessearchtopictopic)
   - [POST](#post)
     - [/issues](#issues-1)
 - [Running the project](#running-the-project)
-  - [Configuration options 🔧](#configuration-options-)
+  - [Configuration options](#configuration-options)
   - [Docker](#docker)
   - [Locally](#locally)
 - [Development](#development)
@@ -89,6 +90,84 @@ GET https://{host}/issues/d60fac79-f9ac-4d2c-89a6-ceb1d6b65aa0
     "topics": "topic1, topic2, topic3, topic4"
   }
 ```
+#### `/issues/sort/:type`
+
+> Returns array with JSON info about all magazine issues, sorted by ascending or descending date
+
+| Query       | Type        |
+| ----------- | ----------- |
+| asc         | string      |
+| desc        | string      |
+
+**Example**
+
+```
+GET https://{host}/issues/sort/desc
+```
+
+**Response**
+
+```json
+[
+  {
+    "_id_": "eede0980-ca44-45c7-ae9e-2443d9dad68f",
+    "number": 21,
+    "date": "1960-10-10T00:00:00.000Z",
+    "cover": "image21.png",
+    "file": "n21.pdf",
+    "language": "English",
+    "topics": "topic1, topic2, topic3, topic4"
+  },
+  {
+    "_id_": "d60fac79-f9ac-4d2c-89a6-ceb1d6b65aa0",
+    "number": 20,
+    "date": "1950-10-10T00:00:00.000Z",
+    "cover": "image20.png",
+    "file": "n20.pdf",
+    "language": "English",
+    "topics": "topic1, topic2, topic3, topic4"
+  }
+]
+```
+
+#### `/issues/search?topic={topic}`
+
+> Returns array with JSON info about all magazine issues that has at least one occurence of query param in topics
+
+| Query       | Type        |
+| ----------- | ----------- |
+| topic       | string      |
+
+**Example**
+
+```
+GET https://{host}/issues/search?topic=cultura
+```
+
+**Response**
+
+```json
+[
+  {
+    "_id_": "eede0980-ca44-45c7-ae9e-2443d9dad68f",
+    "number": 21,
+    "date": "1960-10-10T00:00:00.000Z",
+    "cover": "image21.png",
+    "file": "n21.pdf",
+    "language": "English",
+    "topics": "cultura, topic2, topic3, topic4"
+  },
+  {
+    "_id_": "d60fac79-f9ac-4d2c-89a6-ceb1d6b65aa0",
+    "number": 20,
+    "date": "1950-10-10T00:00:00.000Z",
+    "cover": "image20.png",
+    "file": "n20.pdf",
+    "language": "English",
+    "topics": "topic1, cultura, topic3, topic4"
+  }
+]
+```
 ### POST
 
 #### /issues
@@ -122,7 +201,7 @@ GET https://{host}/issues/d60fac79-f9ac-4d2c-89a6-ceb1d6b65aa0
 
 ## Running the project
 
-### Configuration options 🔧
+### Configuration options
 
 > Change the .env.example file title to just `.env` and populate the values with database URL for connection with DB and a port number. Create a Mongo Atlas cluster and set your username and password. Example database url would be something like this:
 ```bash
@@ -133,7 +212,8 @@ mongodb://USERNAME:PASSWORD@HOST/DATABASE
 
 > Have Docker and Docker Compose installed in your machine.
 
-> Open the project on your prefered code editor, change to `/issues` directory and run in terminal `docker compose up` or `docker compose up -d` for detached mode
+> Open the project on your prefered code editor, change to `/issues` directory and run in terminal `docker compose up` or
+>  `docker compose up -d` for detached mode
 
 ### Locally
 
