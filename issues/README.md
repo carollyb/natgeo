@@ -20,6 +20,7 @@ This project was created as a study case to apply some topics I am interested in
   - [Configuration options](#configuration-options)
   - [Docker](#docker)
   - [Locally](#locally)
+  - [Running tests](#running-tests)
 - [Development](#development)
   - [Technologies](#technologies)
   - [Design Patterns](#design-patterns)
@@ -174,7 +175,10 @@ GET https://{host}/issues/search?topic=cultura
 
 > Returns JSON info with automatically generated id
 
-**Example - inputs:**
+**Example**
+```
+POST https://{host}/issues
+```
 
 | Parameter   | Type        |
 | ----------- | ----------- |
@@ -238,6 +242,11 @@ npm i
 Run
 ```bash
 npm run dev
+```
+
+### Running tests
+```bash
+npm run test
 ```
 
 ## Development
