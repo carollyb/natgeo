@@ -7,14 +7,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Issue {
-  id String @id @default(uuid()) @map("_id")
-  number Int
-  date DateTime
-  cover String
-  file String
+model issue {
+  id       String   @id @map("_id")
+  cover    String
+  date     DateTime @db.Date
+  file     String
   language String
-  topics String
+  number   Int
+  topics   String
+}
 
-  @@map("issue")
+model user {
+  id        String @id @default(uuid()) @map("_id")
+  full_name String
+  username  String
+  password  String
+}
+
+model refresh_token {
+  id        String @id @default(uuid()) @map("_id")
+  expiresIn Int
+  user_id   String
 }

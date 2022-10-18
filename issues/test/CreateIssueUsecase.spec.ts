@@ -1,4 +1,4 @@
-import { CreateIssueUsecase } from "../src/usecases/CreateIssueUsecase"
+import { CreateIssueUsecase } from "../src/usecases/issues/CreateIssueUsecase"
 
 const createIssueCreationSpy = jest.fn();
 

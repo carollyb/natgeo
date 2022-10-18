@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 import { issuesRepository } from "../../server";
 import { SortIssuesByDateUsecase } from "../../usecases/SortIssuesByDateUsecase";
 
@@ -6,13 +5,12 @@ type Query = {
     type: string
 }
 export class SortIssuesByDateController {
-    static async handle(request: Request, response: Response) {
+    static async handle(params: any) {
         const sortIssuesByDateUsecase = new SortIssuesByDateUsecase(
             issuesRepository
             )
-            
+            const { type } = params
         try {
-            const { type } = request.query as unknown as Query
             const issuesByDate = await sortIssuesByDateUsecase.execute(type)
             return issuesByDate
         } catch (error) {

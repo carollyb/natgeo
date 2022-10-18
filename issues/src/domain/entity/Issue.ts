@@ -18,3 +18,13 @@ export default class Issue {
     language,
     topics }: TIssue) {}
 }
+
+export type TIssueOutput = {
+  id: string;
+  number: number;
+  date: Date;
+  cover: string;
+  file: string;
+  language: string;
+  topics: string
+}
