@@ -1,5 +1,4 @@
 import { UsersRepository} from "../../domain/repository/UsersRepository";
-import { hash } from "bcrypt"
 import { sign } from "jsonwebtoken"
 import dayjs from "dayjs"
 import Connection from "../database/Connection"
@@ -12,16 +11,15 @@ export class UserDatabaseRepository implements UsersRepository {
     ) {}
 
     async createUser({ full_name, username, password }: TUserInput) {
-        const passwordHash = await hash(password, 8)
-        const User = await this.connection.createUser({
-            data: {
-                full_name,
-                username,
-                password: passwordHash
-            }
-        })
-
-        return User
+      
+      const User = await this.connection.createUser({
+        data: {
+        full_name,
+        username,
+        password
+      }
+      })
+      return User
     }
 
     async listAllUsers() {
