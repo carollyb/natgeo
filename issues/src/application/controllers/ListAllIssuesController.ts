@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { issuesRepository } from "../../server";
-import { ListAllIssuesUsecase } from "../../usecases/ListAllIssuesUsecase";
+import { ListAllIssuesUsecase } from "../../usecases/issues/ListAllIssuesUsecase";
 
 export class ListAllIssuesController {
   static async handle(request: Request, response: Response) {

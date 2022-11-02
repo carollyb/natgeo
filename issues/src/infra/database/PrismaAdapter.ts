@@ -86,24 +86,52 @@ export default class PrismaAdapter implements Connection {
       })
     return user
   }
-  async searchManyUsers(params: any): Promise<TUser[]> {
+  async searchManyUsers(type: any): Promise<TUser[]> {
+    let users = await this.database.user.findMany({
+      orderBy: [
+        {
+            username: type == 'asc' ? 'asc': 'desc'
+        }
+    ]
+    })
+    return users
+  }
+  async updateUser(data: any, id: any): Promise<TUserOutput> {
+    let updateUser = await this.database.user.update({
+      where: {
+          id
+      },
+      data
+    })
+    return updateUser
+  }
+  async findManyUsers(): Promise<TUser[]> {
     let users = await this.database.user.findMany()
     return users
   }
-  updateUser(data: any): Promise<TUserOutput> {
-    throw new Error("Method not implemented.");
+  async findUniqueUser(id: any): Promise<TUser | null> {
+    let user = await this.database.user.findUnique({
+      where: {
+        id
+      }
+    })
+    return user
   }
-  findManyUsers(): Promise<TUser[]> {
-    throw new Error("Method not implemented.");
+  async deleteUser(id: any): Promise<TUser> {
+    let user = await this.database.user.delete({
+      where: {
+        id
+      }
+    })
+    return user
   }
-  findUniqueUser(params: any): Promise<TUser | null> {
-    throw new Error("Method not implemented.");
-  }
-  deleteUser(params: any): Promise<TUser> {
-    throw new Error("Method not implemented.");
-  }
-  createRefreshToken(params: any): Promise<any> {
-    throw new Error("Method not implemented.");
+  async createRefreshToken(user_id: any, expiresIn: any): Promise<any> {
+    const generateRefreshToken = await this.database.refresh_token.create({
+      data: {
+          user_id,
+          expiresIn
+      }
+  })
   }
 
   close() {
