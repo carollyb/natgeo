@@ -12,9 +12,9 @@ export default interface Connection {
   close (): Promise<void>
   createUser (params: any): Promise<TUser>
   searchManyUsers (params: any): Promise<TUser[]>
-  updateUser (data: any): Promise<TUserOutput>
+  updateUser (data: any, id: any): Promise<TUserOutput>
   findManyUsers (): Promise<TUser[]>
   findUniqueUser (params: any): Promise<TUser | null>
   deleteUser (params: any): Promise<TUser>
-  createRefreshToken (params: any): Promise<any>
+  createRefreshToken (user_id: any, expiresIn: any): Promise<any>
 }

@@ -11,7 +11,6 @@ export class UserDatabaseRepository implements UsersRepository {
     ) {}
 
     async createUser(params: TUserInput) {
-      
       const User = await this.connection.createUser(params)
       return User
     }
@@ -22,49 +21,28 @@ export class UserDatabaseRepository implements UsersRepository {
     }
 
     async searchUser(username: string) {
-        const searchUser = await this.connection.findUniqueUser({
-            where: {
-                username
-            }
-        })
+        const searchUser = await this.connection.findUniqueUser(username)
         return searchUser
     }
 
     async searchUserById(id: string): Promise<any> {
-        const searchUser = await this.connection.findUniqueUser({
-            where: {
-                id
-            }
-        })
+        const searchUser = await this.connection.findUniqueUser(id)
         return searchUser
     }
 
     async sortUsersByUsername(type: string) {
         const allUsers = await this.connection.searchManyUsers({
-            orderBy: [
-                {
-                    username: type == 'asc' ? 'asc': 'desc'
-                }
-            ]
+            
         })
         return allUsers
     }
 
     async deleteUser(id: string) {
-        await this.connection.deleteUser({
-            where: {
-                id: id
-            }
-        })
+        await this.connection.deleteUser(id)
     }
 
     async updateUser(id: string, data: Partial<TUser>) {
-        const newUserData = await this.connection.updateUser({
-            where: {
-                id
-            },
-            data
-        });
+        const newUserData = await this.connection.updateUser(id, data);
         return newUserData
     }
 
@@ -80,12 +58,7 @@ export class UserDatabaseRepository implements UsersRepository {
 
     async refreshToken (user_id: string): Promise<any> {
         const expiresIn = dayjs().add(15, "second").unix()
-        const generateRefreshToken = await this.connection.createRefreshToken({
-            data: {
-                user_id,
-                expiresIn
-            }
-        })
+        const generateRefreshToken = await this.connection.createRefreshToken(user_id, expiresIn)
         return generateRefreshToken
     }
 }
