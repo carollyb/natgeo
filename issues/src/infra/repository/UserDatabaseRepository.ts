@@ -10,15 +10,9 @@ export class UserDatabaseRepository implements UsersRepository {
     readonly connection: Connection
     ) {}
 
-    async createUser({ full_name, username, password }: TUserInput) {
+    async createUser(params: TUserInput) {
       
-      const User = await this.connection.createUser({
-        data: {
-        full_name,
-        username,
-        password
-      }
-      })
+      const User = await this.connection.createUser(params)
       return User
     }
 

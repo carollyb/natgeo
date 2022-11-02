@@ -9,37 +9,37 @@ export class IssueDatabaseRepository implements IssuesRepository {
     ) {}
 
   async create(params: TIssue) {
-    const issue = await this.connection.create(params)
+    const issue = await this.connection.createIssue(params)
     return issue
   }
 
   async listAllIssues() {
-    const allIssues = await this.connection.findMany()
+    const allIssues = await this.connection.findManyIssues()
     return allIssues
   }
 
   async listOneIssue(id: string) {
-    const issue = await this.connection.findUnique(id)
+    const issue = await this.connection.findUniqueIssue(id)
     return issue
   }
 
   async sortIssuesByDate(type: string) {
-    const issuesByDate = await this.connection.filterByDate(type)
+    const issuesByDate = await this.connection.filterIssueByDate(type)
     return issuesByDate
   }
 
   async searchByTopic(topic: string) {
-    const issuesByTopic = await this.connection.filterByTopic(topic)
+    const issuesByTopic = await this.connection.filterIssueByTopic(topic)
     return issuesByTopic
   }
 
   async searchByDateRange(startDate: Date, endDate: Date) {
-    const issuesInDateRange = await this.connection.filterByDateRange(startDate, endDate)
+    const issuesInDateRange = await this.connection.filterIssueByDateRange(startDate, endDate)
     return issuesInDateRange
   }
 
   async deleteIssue(id: string) {
-    const issueToDelete = await this.connection.delete(id)
+    const issueToDelete = await this.connection.deleteIssue(id)
     return issueToDelete
   }
 }

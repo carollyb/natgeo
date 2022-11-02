@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { issuesRepository } from "../../server";
-import { SearchIssueByTopicUsecase } from "../../usecases/SearchIssueByTopicUsecase";
+import { SearchIssueByTopicUsecase } from "../../usecases/issues/SearchIssueByTopicUsecase";
 
 type Query = {
     topic: string

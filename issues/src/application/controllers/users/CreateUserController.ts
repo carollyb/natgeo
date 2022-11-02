@@ -6,18 +6,9 @@ export class CreateUserController {
     const createUserUsecase = new CreateUserUsecase(
       usersRepository
     )
-    const {
-      full_name,
-      username,
-      password
-    } = request
     try {
-      const user = await createUserUsecase.execute({
-        full_name,
-        username,
-        password
-      })
-      
+      const { full_name, username, password } = request
+      const user = await createUserUsecase.execute({ full_name, username, password })
       return user
     } catch (error) {
       if (error instanceof Error) {

@@ -1,4 +1,4 @@
-import { IssuesRepository } from "../domain/repository/IssuesRepository";
+import { IssuesRepository } from "../../domain/repository/IssuesRepository";
 
 type SearchIssueByDateRangeRequest = {
     startDate: any;

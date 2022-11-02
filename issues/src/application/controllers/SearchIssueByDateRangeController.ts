@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { issuesRepository } from "../../server";
-import { SearchIssueByDateRangeUsecase } from "../../usecases/SearchIssueByDateRangeUsecase";
+import { SearchIssueByDateRangeUsecase } from "../../usecases/issues/SearchIssueByDateRangeUsecase";
 
 export class SearchIssueByDateRangeController {
     static async handle(request: Request, response: Response) {
