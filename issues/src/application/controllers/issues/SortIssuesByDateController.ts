@@ -1,5 +1,5 @@
-import { issuesRepository } from "../../server";
-import { SortIssuesByDateUsecase } from "../../usecases/issues/SortIssuesByDateUsecase";
+import { issuesRepository } from "../../../server";
+import { SortIssuesByDateUsecase } from "../../../usecases/issues/SortIssuesByDateUsecase";
 
 type Query = {
     type: string

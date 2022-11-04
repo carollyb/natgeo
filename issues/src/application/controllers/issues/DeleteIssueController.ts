@@ -1,5 +1,5 @@
-import { issuesRepository } from "../../server";
-import { DeleteIssueUsecase } from "../../usecases/issues/DeleteIssueUsecase";
+import { issuesRepository } from "../../../server";
+import { DeleteIssueUsecase } from "../../../usecases/issues/DeleteIssueUsecase";
 
 export class DeleteIssueController {
 
