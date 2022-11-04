@@ -1,5 +1,5 @@
-import { issuesRepository } from "../../server";
-import ListOneIssueUsecase from "../../usecases/issues/ListOneIssueUsecase";
+import { issuesRepository } from "../../../server";
+import ListOneIssueUsecase from "../../../usecases/issues/ListOneIssueUsecase";
 
 export class ListOneIssueController {
 

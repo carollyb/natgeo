@@ -27,10 +27,10 @@ export default class PrismaAdapter implements Connection {
     let issues = await this.database.issue.findMany()
     return issues
   }
-  async findUniqueIssue(params: any): Promise<Issue | null> {
+  async findUniqueIssue(id: string): Promise<Issue | null> {
     let issue = await this.database.issue.findUnique({
       where: {
-          id: params.id
+          id: id
       }
   })
     return issue
@@ -56,11 +56,11 @@ export default class PrismaAdapter implements Connection {
     })
     return issues
   }
-  async filterIssueByTopic(params: any): Promise<Issue[]> {
+  async filterIssueByTopic(topic: string): Promise<Issue[]> {
     let issues = await this.database.issue.findMany({
       where: {
         topics: {
-          contains: params,
+          contains: topic,
           mode: 'insensitive'
         }
       }

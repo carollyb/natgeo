@@ -1,5 +1,5 @@
-import { issuesRepository, httpServer } from "../../server";
-import { CreateIssueUsecase } from "../../usecases/issues/CreateIssueUsecase"
+import { issuesRepository, httpServer } from "../../../server";
+import { CreateIssueUsecase } from "../../../usecases/issues/CreateIssueUsecase"
 export class CreateIssueController {
   static async handle(request: any) {
 

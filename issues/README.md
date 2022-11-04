@@ -29,6 +29,7 @@ This project was created as a study case to apply some topics I am interested in
   - [SOLID Principles](#solid-principles)
   - [Libraries & Frameworks](#libraries--frameworks)
 - [Frontend App](#frontend-app)
+- [Wishlist](#wishlist)
 </details><br />
 
 ## API Usage
@@ -262,9 +263,15 @@ npm run test
 > Inspired by Domain Driven Design (DDD) and Ports and Adapters, the project is organized by a core domain layer with entities declarations, business rules layer (use cases), an outer layer (controllers) that received requests from the web and infra level (adapters for connection with database and with the "outside world"). All layers have interfaces between them to obtain a maximum separation of concerns and to abstract most methods.
 
 ### SOLID Principles
-> As I am studying, first I have focused in two principles: Single Responsibility and Dependency Inversion. Methods implemented to connect the application to the database (by Prisma) are abstracted and allows to easily change database config in the future, if the user wishes so. Express methods are also abstracted, so that Express dependency is more loose and can also easily replaceble in the future.
+> As I am studying, first I have focused in two principles: Single Responsibility and Dependency Inversion. Methods implemented to connect the application to the database (by Prisma) are abstracted and allows to easily change database config in the future, if the user wishes so. Express methods are also abstracted, so that Express dependency is more loose and can also be easily replaceble in the future.
 
 ### Libraries & Frameworks
 > Jest, Cors, Express, Prisma, Nodemon, TS-Node, uuid and bcrypt (so far)
 ## Frontend App
 > Coming Soon
+## Wishlist
+> Pagination, offset
+> Issues pdf files on AWS S3 Bucket
+> Display issues with react-pdf
+> Download issues via aws-sdk
+> Typescript paths alias

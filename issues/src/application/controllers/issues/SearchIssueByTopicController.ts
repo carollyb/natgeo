@@ -1,17 +1,16 @@
-import { Request, Response } from "express";
-import { issuesRepository } from "../../server";
-import { SearchIssueByTopicUsecase } from "../../usecases/issues/SearchIssueByTopicUsecase";
+import { issuesRepository } from "../../../server";
+import { SearchIssueByTopicUsecase } from "../../../usecases/issues/SearchIssueByTopicUsecase";
 
 type Query = {
     topic: string
 }
 export class SearchIssueByTopicController {
-    static async handle(request: Request, response: Response) {
+    static async handle(params: any) {
         const searchIssueByTopicUsecase = new SearchIssueByTopicUsecase(
             issuesRepository
         )
         try {
-            const { topic } = request.query as unknown as Query
+            const { topic } = params
             const issuesByTopic = await searchIssueByTopicUsecase.execute(topic)
             return issuesByTopic
         } catch (error) {
