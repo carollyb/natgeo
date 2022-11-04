@@ -6,16 +6,14 @@ import {
   SearchIssueByDateRangeController,
   SearchIssueByTopicController,
   SortIssuesByDateController,
-  CreateUserController,
-  } from "../../application/controllers";
-import { IssuesRepository } from "../../domain/repository/IssuesRepository";
-import { UsersRepository } from "../../domain/repository/UsersRepository";
-import HttpServer from "./HttpServer";
+  } from "../../../application/controllers";
+import { IssuesRepository } from "../../../domain/repository/IssuesRepository";
+import HttpServer from "../HttpServer";
 export default class Router {
   constructor(
     readonly httpServer: HttpServer, 
-    readonly issuesRepository: IssuesRepository,
-    readonly usersRepository: UsersRepository) {
+    readonly issuesRepository: IssuesRepository
+    ) {
   }
   
   async init() {
@@ -37,7 +35,10 @@ export default class Router {
       return response
     })
 
-    this.httpServer.on("get", "/issues/search", SearchIssueByTopicController.handle)
+    this.httpServer.on("get", "/issues/search/:topic", async (params: any, body: any) => {
+      const response = await SearchIssueByTopicController.handle(params)
+      return response
+    })
 
     this.httpServer.on("get", "/issues/date", SearchIssueByDateRangeController.handle)
 
@@ -48,11 +49,6 @@ export default class Router {
 
     this.httpServer.on("delete", "/issue/:id", async (params: any, body: any) => {
       const response = await DeleteIssueController.handle(params)
-      return response
-    })
-
-    this.httpServer.on("post", "/user", async (params: any, body: any) => {
-      const response = await CreateUserController.handle(body)
       return response
     })
 
