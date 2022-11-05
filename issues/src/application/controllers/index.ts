@@ -8,3 +8,5 @@ export * from "./issues/SortIssuesByDateController"
 
 export * from "./users/CreateUserController"
 export * from "./users/ListAllUsersController"
+
+export * from "./s3/GetSecureUrlController"

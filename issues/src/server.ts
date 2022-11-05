@@ -1,6 +1,9 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import ExpressAdapter from "./infra/api/ExpressAdapter";
 import IssueRouter from "./infra/api/routers/IssueRouter";
 import UserRouter from "./infra/api/routers/UserRouter";
+import S3Router from "./infra/api/routers/S3Router"
 import PrismaAdapter from "./infra/database/PrismaAdapter";
 import { IssueDatabaseRepository } from "./infra/repository/IssueDatabaseRepository";
 import { UserDatabaseRepository } from "./infra/repository/UserDatabaseRepository";
@@ -21,8 +24,12 @@ export const userRouter = new UserRouter(
   httpServer,
   usersRepository
 )
+export const s3Router = new S3Router(
+  httpServer
+)
 
 issueRouter.init();
 userRouter.init();
+s3Router.init();
 
 httpServer.listen(port)
