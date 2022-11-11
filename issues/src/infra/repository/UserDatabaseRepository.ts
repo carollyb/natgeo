@@ -38,27 +38,28 @@ export class UserDatabaseRepository implements UsersRepository {
     }
 
     async deleteUser(id: string) {
-        await this.connection.deleteUser(id)
+      const deletedUser = await this.connection.deleteUser(id)
+      return deletedUser
     }
 
     async updateUser(id: string, data: Partial<TUser>) {
-        const newUserData = await this.connection.updateUser(id, data);
-        return newUserData
+      const newUserData = await this.connection.updateUser(id, data);
+      return newUserData
     }
 
     async login({ username, id }: any) {
-        const token = sign({
-            username: username
-        }, `${process.env.JWT_SECRET}`, {
-            subject: id,
-            expiresIn: "20s"
-        })
-        return token
+      const token = sign({
+          username: username
+      }, `${process.env.JWT_SECRET}`, {
+          subject: id,
+          expiresIn: "20s"
+      })
+      return token
     }
 
     async refreshToken (user_id: string): Promise<any> {
-        const expiresIn = dayjs().add(15, "second").unix()
-        const generateRefreshToken = await this.connection.createRefreshToken(user_id, expiresIn)
-        return generateRefreshToken
+      const expiresIn = dayjs().add(15, "second").unix()
+      const generateRefreshToken = await this.connection.createRefreshToken(user_id, expiresIn)
+      return generateRefreshToken
     }
 }

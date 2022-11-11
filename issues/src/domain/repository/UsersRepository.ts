@@ -7,7 +7,7 @@ export interface UsersRepository {
   searchUserById: (id: string) => Promise<any>
   sortUsersByUsername: (type: string) => Promise<TUser[]>
   updateUser: (id: string, data: Partial<TUser>) => Promise<TUser>
-  deleteUser: (id: string) => Promise<void>
+  deleteUser: (id: string) => Promise<TUser>
   login: (data: any) => Promise<any>
   refreshToken: (user_id: string) => Promise<void>
 }
