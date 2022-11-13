@@ -96,12 +96,12 @@ export default class PrismaAdapter implements Connection {
     })
     return users
   }
-  async updateUser(data: any, id: any): Promise<TUserOutput> {
+  async updateUser(params: string, body: Partial<TUser>): Promise<TUserOutput> {
     let updateUser = await this.database.user.update({
       where: {
-          id
+          id: params
       },
-      data
+      data: body
     })
     return updateUser
   }
