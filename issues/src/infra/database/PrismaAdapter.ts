@@ -105,8 +105,11 @@ export default class PrismaAdapter implements Connection {
     })
     return updateUser
   }
-  async findManyUsers(): Promise<TUser[]> {
-    let users = await this.database.user.findMany()
+  async findManyUsers(offset: number, limit: number): Promise<TUser[]> {
+    let users = await this.database.user.findMany({
+      skip: Number(offset*limit),
+      take: Number(limit)
+    })
     return users
   }
   async findUniqueUser(id: any): Promise<TUser | null> {
