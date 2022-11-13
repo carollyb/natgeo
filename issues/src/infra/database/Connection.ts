@@ -13,7 +13,7 @@ export default interface Connection {
   createUser (params: any): Promise<TUser>
   searchManyUsers (params: any): Promise<TUser[]>
   updateUser (data: any, id: any): Promise<TUserOutput>
-  findManyUsers (): Promise<TUser[]>
+  findManyUsers (offset: number, limit: number): Promise<TUser[]>
   findUniqueUser (params: any): Promise<TUser | null>
   deleteUser (params: any): Promise<TUser>
   createRefreshToken (user_id: any, expiresIn: any): Promise<any>

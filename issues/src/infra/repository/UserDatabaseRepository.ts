@@ -15,8 +15,8 @@ export class UserDatabaseRepository implements UsersRepository {
       return User
     }
 
-    async listAllUsers() {
-        const allUsers = await this.connection.findManyUsers()
+    async listAllUsers(offset: number, limit: number) {
+        const allUsers = await this.connection.findManyUsers(offset, limit)
         return allUsers
     }
 

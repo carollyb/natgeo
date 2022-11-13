@@ -19,8 +19,8 @@ export default class Router {
       return response
     })
 
-    this.httpServer.on("get", "/user", async (params: any, body: any) => {
-      const response = await ListAllUsersController.handle()
+    this.httpServer.on("get", "/user/:offset/:limit", async (params: any, body: any) => {
+      const response = await ListAllUsersController.handle(params)
       return response
     })
 
