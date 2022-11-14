@@ -7,6 +7,7 @@ import S3Router from "./infra/api/routers/S3Router"
 import PrismaAdapter from "./infra/database/PrismaAdapter";
 import { IssueDatabaseRepository } from "./infra/repository/IssueDatabaseRepository";
 import { UserDatabaseRepository } from "./infra/repository/UserDatabaseRepository";
+import AuthRouter from './infra/api/routers/AuthRouter';
 
 const port = process.env.PORT;
 
@@ -27,9 +28,14 @@ export const userRouter = new UserRouter(
 export const s3Router = new S3Router(
   httpServer
 )
+export const authRouter = new AuthRouter(
+  httpServer,
+  usersRepository
+)
 
 issueRouter.init();
 userRouter.init();
 s3Router.init();
+authRouter.init();
 
 httpServer.listen(port)

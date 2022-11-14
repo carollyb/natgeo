@@ -112,10 +112,10 @@ export default class PrismaAdapter implements Connection {
     })
     return users
   }
-  async findUniqueUser(id: any): Promise<TUser | null> {
-    let user = await this.database.user.findUnique({
+  async findUniqueUser(username: string): Promise<TUser | null > {
+    let user = await this.database.user.findFirst({
       where: {
-        id
+        username
       }
     })
     return user
