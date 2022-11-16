@@ -3,7 +3,7 @@
   <i>NatGeo helps organizing magazine issues digital files, allowing creation, deletion and searching magazine issues by multiple parameters</i><br />
   <i>🚧 In progress 🚧</i><br />
 </p>
-This project was created as a study case to apply some topics I am interested in studying, such as: SOLID principles, Test Driven Development and Docker... Check [Development](#development) section to see a full list of design patterns, technologies and libraries used
+<p>This project was created as a study case to apply some topics I am interested in studying, such as: SOLID principles, Test Driven Development and Docker... Check Development section to see a full list of design patterns, technologies and libraries used</p><br />
 
 <details>
 <summary><b>Contents</b></summary>

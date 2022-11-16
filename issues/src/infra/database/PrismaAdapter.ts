@@ -96,12 +96,12 @@ export default class PrismaAdapter implements Connection {
     })
     return users
   }
-  async updateUser(data: any, id: any): Promise<TUserOutput> {
+  async updateUser(params: string, body: Partial<TUser>): Promise<TUserOutput> {
     let updateUser = await this.database.user.update({
       where: {
-          id
+          id: params
       },
-      data
+      data: body
     })
     return updateUser
   }
@@ -112,10 +112,10 @@ export default class PrismaAdapter implements Connection {
     })
     return users
   }
-  async findUniqueUser(id: any): Promise<TUser | null> {
-    let user = await this.database.user.findUnique({
+  async findUniqueUser(username: string): Promise<TUser | null > {
+    let user = await this.database.user.findFirst({
       where: {
-        id
+        username
       }
     })
     return user

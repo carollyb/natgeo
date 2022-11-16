@@ -16,25 +16,24 @@ export class UserDatabaseRepository implements UsersRepository {
     }
 
     async listAllUsers(offset: number, limit: number) {
-        const allUsers = await this.connection.findManyUsers(offset, limit)
-        return allUsers
+      const allUsers = await this.connection.findManyUsers(offset, limit)
+      return allUsers
     }
 
     async searchUser(username: string) {
-        const searchUser = await this.connection.findUniqueUser(username)
-        return searchUser
+      const searchUser = await this.connection.findUniqueUser(username)
+      return searchUser
     }
 
     async searchUserById(id: string): Promise<any> {
-        const searchUser = await this.connection.findUniqueUser(id)
-        return searchUser
+      const searchUser = await this.connection.findUniqueUser(id)
+      return searchUser
     }
 
     async sortUsersByUsername(type: string) {
-        const allUsers = await this.connection.searchManyUsers({
-            
-        })
-        return allUsers
+      const allUsers = await this.connection.searchManyUsers({
+      })
+      return allUsers
     }
 
     async deleteUser(id: string) {
@@ -49,9 +48,9 @@ export class UserDatabaseRepository implements UsersRepository {
 
     async login({ username, id }: any) {
       const token = sign({
-          username: username
+          username
       }, `${process.env.JWT_SECRET}`, {
-          subject: id,
+          subject: `${id}`,
           expiresIn: "20s"
       })
       return token

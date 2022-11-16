@@ -20,7 +20,7 @@ model issue {
 model user {
   id        String @id @default(uuid()) @map("_id")
   full_name String
-  username  String
+  username  String @unique
   password  String
 }
 

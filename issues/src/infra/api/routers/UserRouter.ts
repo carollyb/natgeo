@@ -1,7 +1,8 @@
 import { 
   CreateUserController,
   ListAllUsersController,
-  DeleteUserController
+  DeleteUserController,
+  UpdateUserController
   } from "../../../application/controllers";
 import { UsersRepository } from "../../../domain/repository/UsersRepository";
 import HttpServer from "../HttpServer";
@@ -26,6 +27,11 @@ export default class Router {
 
     this.httpServer.on("delete", "/user/:id", async (params: any, body: any) => {
       const response = await DeleteUserController.handle(params)
+      return response
+    })
+
+    this.httpServer.on("patch", "/user/:id", async (params: any, body: any) => {
+      const response = await UpdateUserController.handle(params, body)
       return response
     })
 
